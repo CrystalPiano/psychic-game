@@ -1,2 +1,2 @@
-# psychic-game
-A psychic game created with JS.
+# hangman-game
+A hangman game created using JS.
