@@ -1,20 +1,31 @@
 <!DOCTYPE html>
+<html lang="en-us">
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>Luc's Psychic JS Game</title>
-	<link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+	<!-- <link rel="stylesheet" type="text/css" href="./assets/css/reset.css"> -->
 	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-	<script type="text/javascript" src="/assets/javascript/game.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/solar/bootstrap.min.css" integrity="sha384-GC77SCz5O11gVtXl0sSfbQYEWSSznn1wPDHgL1BGUTFU9iEoUrG4IOJa5CBVY8kR" crossorigin="anonymous">
+	<!-- Linking JavaScript Game File -->
+	<script type="text/javascript" src="./assets/javascript/game.js"></script>
 </head>
 <body>
 
 <h1>The Psychic Game</h1>
 
-<p>Guess What Letter I am Thinking Of</p>
+<p>Guess what letter I am thinking of.</p>
+<p>Press any letter key to play!</p>
 <p>Wins:</p>
 <p>Losses:</p>
-<p>Guesses Left:</p>
-<p>Your Guesses So Far:</p>
+<p>Remaining Guesses:</p>
+<p>Guesses So Far:</p>
+
+<p id="wins"></p>
+<p id="losses"></p>
+<p id="remainingGuesses"></p>
+<p id="userGuess"></p>
 
 </body>
 </html>
