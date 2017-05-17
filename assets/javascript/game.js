@@ -30,8 +30,8 @@
         var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
 // User guess filter.
-       if (userGuess.indexof(event.key) === -1) {}
-       	else {
+      //fa if (userGuess.indexof(event.key) === -1) //{
+       	//else {
 
 // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate counter.
 		if (userGuess === computerGuess) {
@@ -42,12 +42,14 @@
         }
 
 		  // Here we create the HTML that will be injected into our div and displayed on the page.
-          var html = "<p>Press r, p or s to start playing!</p>" +
-          "<p>wins: " + wins + "</p>" +
+          
+		  $("#random-number").prepend('<br><hr>' + lottoNumber);
+
+          "<p>wins: " + wins + "</p>";
           "<p>losses: " + losses + "</p>";
+          "<p>remainingGuesses " + remainingGuesses + "</p>";
+          "<p>userGuess " + userGuess + "</p>";
 
           // Injecting the HTML we just created into our div and updating the game information on our page.
-         // document.querySelector("#game").innerHTML = html;
-
-          }
+       
     };
