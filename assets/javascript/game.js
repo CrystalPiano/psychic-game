@@ -1,55 +1,78 @@
-
-
 //VARIABLES ===========================
 
-// We start the game with a score of 0.
-    var score = 0;
 // Tally wins amount.
 	var wins = 0;
 // Tally losses amount.
 	var losses = 0;
-// Tally remaining guesses.
-	var remainingGuesses = 9;
-// Tally guesses taken so far.
-	var  guessesTaken = 0;
-// The array of potential guesses a user can take.
-	var userGuess = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+// Tally of possible guesses.
+	var guesses = 9;
+// Tally of remaing guess count.
+	var guessesLeft = 9;
 // The array of possible computer choices.
     var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-// The computers guess
+// The guessed letters
+	var guessedLetters = [];
+// 
+	var letterToGuess = null;
 
 //FUNCTIONS ===========================
 
-// When the user presses a key, it will run the following function...
-      document.onkeyup = function(event) {
 
-// Determine which key was pressed
-        var userGuess = event.key;
+//Lets the computer select a random letter from the available choices
+var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-// Sets the computerGuess variable equal to a random choice from the computerChoice array.
-        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+//Allows the user 9 guesses
+// guesses = guesses || 9
+var updateGuessesLeft = function() {
+  
+  // Here we are grabbing the HTML element and setting it equal to the guessesLeft. (i.e. guessesLeft will get displayed in HTML)
+  document.querySelector('#guessesLeft').innerHTML = "guesses left: " + guessesLeft;
+};
 
-// User guess filter.
-      //fa if (userGuess.indexof(event.key) === -1) //{
-       	//else {
+var updateLetterToGuess = function() {
+  this.letterToGuess = this.computerChoices[Math.floor(Math.random() * this.computerChoices.length)];
+};
+var updateGuessesSoFar = function() {
+  // Here we take the guesses the user has tried -- then display it as letters separated by commas. 
+  document.querySelector('#let').innerHTML = "Your Guesses so far: " + guessedLetters.join(', ');
+};
+// Function will be called when we reset everything
+var reset = function() {
+  totalGuesses = 9;
+  guessesLeft = 9;
+  guessedLetters = [];
 
-// This logic determines the outcome of the game (win/loss/tie), and increments the appropriate counter.
-		if (userGuess === computerGuess) {
-            wins++; 
-        }
-        else if (userGuess !== computerGuess) {
+  updateLetterToGuess();
+  updateGuessesLeft();
+  updateGuessesSoFar();
+}
+
+updateLetterToGuess();
+updateGuessesLeft();
+
+
+//When key is released it becomes the users guess
+document.onkeyup = function(event) {
+    guessesLeft--;
+  var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+  guessedLetters.push(userGuess);
+  updateGuessesLeft();
+  updateGuessesSoFar();
+
+        if (guessesLeft > 0){
+            if (userGuess == letterToGuess){
+                wins++;
+                document.querySelector('#wins').innerHTML = "Wins: " + wins;
+                alert("Yes, you are psychic!");
+                reset();
+            }
+        }else if(guessesLeft == 0){
+            // Then we will loss and we'll update the html to display the loss 
             losses++;
+            document.querySelector('#losses').innerHTML = "Losses: " + losses;
+            alert("Sorry, you're not psychic, maybe try again?");
+            // Then we'll call the reset. 
+            reset();
         }
-
-		  // Here we create the HTML that will be injected into our div and displayed on the page.
-          
-		  $("#random-number").prepend('<br><hr>' + lottoNumber);
-
-          "<p>wins: " + wins + "</p>";
-          "<p>losses: " + losses + "</p>";
-          "<p>remainingGuesses " + remainingGuesses + "</p>";
-          "<p>userGuess " + userGuess + "</p>";
-
-          // Injecting the HTML we just created into our div and updating the game information on our page.
-       
-    };
+};
