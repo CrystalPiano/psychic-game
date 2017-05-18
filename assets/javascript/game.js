@@ -18,15 +18,15 @@
 //FUNCTIONS ===========================
 
 
-//Lets the computer select a random letter from the available choices
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+//Lets the computer select a random letter from the array
+var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]
+console.log(computerGuess);
 
-//Allows the user 9 guesses
-// guesses = guesses || 9
-var updateGuessesLeft = function() {
+//User gets 9 guesses
+var updateguessesLeft = function() {
   
   // Here we are grabbing the HTML element and setting it equal to the guessesLeft. (i.e. guessesLeft will get displayed in HTML)
-  document.querySelector('#guessesLeft').innerHTML = "guesses left: " + guessesLeft;
+ // document.querySelector('#guessLeft').innerHTML = "Guesses left: " + guessesLeft;
 };
 
 var updateLetterToGuess = function() {
@@ -39,40 +39,46 @@ var updateGuessesSoFar = function() {
 // Function will be called when we reset everything
 var reset = function() {
   totalGuesses = 9;
-  guessesLeft = 9;
+  //guessLeft = 9;
   guessedLetters = [];
 
-  updateLetterToGuess();
-  updateGuessesLeft();
-  updateGuessesSoFar();
+  //updateLetterToGuess();
+  //updateGuessesLeft();
+  //updateGuessesSoFar();
 }
 
-updateLetterToGuess();
-updateGuessesLeft();
+//updateLetterToGuess();
+//updateGuessesLeft();
 
 
-//When key is released it becomes the users guess
+//Users guess function
 document.onkeyup = function(event) {
-    guessesLeft--;
+    //guessLeft--;
   var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
-  guessedLetters.push(userGuess);
-  updateGuessesLeft();
-  updateGuessesSoFar();
+  //guessedLetters.push(userGuess);
+ //updateGuessesLeft();
+ //updateGuessesSoFar();
 
+
+ 		// Indicatres a win, loss, guess count and reset.
         if (guessesLeft > 0){
-            if (userGuess == letterToGuess){
+            if (userGuess === letterToGuess){
                 wins++;
                 document.querySelector('#wins').innerHTML = "Wins: " + wins;
-                alert("Yes, you are psychic!");
+                alert("You are a mind reader!");
                 reset();
             }
-        }else if(guessesLeft == 0){
-            // Then we will loss and we'll update the html to display the loss 
+        else if(guessesLeft > 0){
+        	guessesLeft--;
+        	document.querySelector("#guessLeft").innerHTML = "Guesses Left: " + guessLeft;
+
+        }
+
+        }else if(guessesLeft === 0){
             losses++;
             document.querySelector('#losses').innerHTML = "Losses: " + losses;
-            alert("Sorry, you're not psychic, maybe try again?");
-            // Then we'll call the reset. 
+            alert("Better sharpen your skillls!"); 
             reset();
         }
 };
