@@ -62,7 +62,7 @@ document.onkeyup = function(event) {
 
  		// Indicates a win, loss, guess count and reset.
         if (guessesLeft > 0){
-            if (userGuess === letterToGuess){
+            if (userGuess === computerGuess){
                 wins++;
                 document.querySelector('#wins').innerHTML = "Wins: " + wins;
                 alert("You are a mind reader!");
