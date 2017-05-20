@@ -22,7 +22,7 @@
 
 function gamereset() {
   guessesLeft = 9;
-  computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]
+  computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
   console.log(computerGuess);  
   //document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
 }
@@ -34,7 +34,7 @@ document.onkeyup = function(event) {
 
 //document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
 
-if (guessesLeft > 0){
+if (guessesLeft > 1){
       if (userGuess === computerGuess){
         wins++;
         document.querySelector('#wins').innerHTML = "Wins: " + wins;
