@@ -13,27 +13,40 @@
 
 //============
 
-//var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]
-//console.log(computerGuess);
-
-//function reset() {
- // guessesLeft = 9;
-//}
-
+//Defines Reset Function
 function gamereset() {
   guessesLeft = 9;
   computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-  console.log(computerGuess);  
-  //document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
+  console.log(computerGuess); 
+  letterGuessed = ""; //Not sure how to clear this and still display 'Guesses so far: '?
+  //document.querySelector("#guessesLeft").innerHTML = "Guesses Left: 9" + guessesLeft;
 }
 
+//Runs Reset Function to ensure a clear page state
 gamereset();
 
+//=====
+
+//Triggering userGuess as a lowercase character
 document.onkeyup = function(event) {
   var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+  console.log(userGuess);
 
+//=====
+
+//Trying to sort out how to collect users input key to list in 'letters guessed area'
+var letterGuessed = document.getElementById("letterGuessed");
+letterGuessed.textContent = event.key;
+//document.querySelector("letterGuessed").innerHTML = "Letters Guessed: " + letterGuessed + ","; // Not sure how to list all seperated by a comma
+
+//=====
+
+//Trying to figure out why reset does not set guessesLeft counter back to 9.
 //document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
 
+//=====
+
+//Game Logic - Defines what constitutes a Win, Loss, and Guess counter reduction.
 if (guessesLeft > 1){
       if (userGuess === computerGuess){
         wins++;
